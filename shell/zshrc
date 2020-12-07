@@ -1,0 +1,56 @@
+# Source manjaro-zsh-configuration
+
+
+if [[ -e /usr/share/zsh/manjaro-zsh-config ]]; then
+  source /usr/share/zsh/manjaro-zsh-config
+fi
+# Use manjaro zsh prompt
+if [[ -e /usr/share/zsh/manjaro-zsh-prompt ]]; then
+  source /usr/share/zsh/manjaro-zsh-prompt
+fi
+
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+export wasdudes='NzYxMzQzNDY3ODg4MzEyMzUx.X3ZOWw.NnIDhJEN3SuaYq9Bxt2mVvFQf2k'
+export sparks='NjAwNTc5ODU4MDExMjU4OTEx.XS1zlA.Oe4FgZlOHw1bbp6a8WgpecUYlgM'
+export owner='460132508202172426'
+export admin='admin@192.168.0.3'
+
+alias de=startxfce4
+alias novpn=mullvad-exclude
+alias gpu=prime-run
+alias gpuvpn='prime-run mullvad-exclude'
+alias inst='mullvad-exclude yay -Syu'
+alias pkgclean='yay -cc'
+alias pkgrmv='yay -Rsn'
+
+#case $TERM in
+#    xterm*)
+#        precmd () {print -Pn "\e]0;${SHELL} - ${USER}@${HOST}\a"}
+#        ;;
+#esac
+
+export STEAM_COMPAT_DATA_PATH=$HOME/proton
+export PC_COMMON=$HOME/.steam/steam/steamapps/common/
+
+#if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]] then
+#	mv .xsession-errors .xsession-errors.old
+#	startxfce4 > .xsession-errors
+#	logout
+#fi
+
+case $TERM in
+  xterm*)
+    precmd () {print -Pn "\e]0;${USER}@${HOST} - %~\a"}
+    ;;
+esac

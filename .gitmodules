@@ -1,0 +1,3 @@
+[submodule "smoothscripts"]
+	path = smoothscripts
+	url = https://github.com/caverym/smoothscripts.git
