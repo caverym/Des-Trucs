@@ -1,0 +1,16 @@
+load_video
+set gfxpayload=keep
+insmod gzio
+insmod part_gpt
+insmod fat
+set root='hd1,gpt1'
+if [ x$feature_platform_search_hint = xy ]; then
+  search --no-floppy --fs-uuid --set=root --hint-bios=hd1,gpt1 --hint-efi=hd1,gpt1 --hint-baremetal=ahci1,gpt1  7E38-7586
+else
+  search --no-floppy --fs-uuid --set=root 7E38-7586
+fi
+echo	'Loading Linux Bunny...'
+linux	/vmlinuz root=UUID=944e0f0b-c6cf-4b25-81e1-9c648ebfc352 rw acpi_backlight=vendor loglevel=3 rd.udev.log_priority=3 quiet
+echo	'Loading initial ramdisk ...'
+initrd	/amd-ucode.img /initramfs-linux-bunny.img
+
