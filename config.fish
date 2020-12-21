@@ -6,7 +6,6 @@ end
 
 # Startup
 starship init fish | source
-set fish_greeting "Bonjour, $USER~"
 neofetch
 mullvad status
 #neofetch --w3m $HOME/Images/bunnyckear.png
